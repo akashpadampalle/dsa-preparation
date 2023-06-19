@@ -48,6 +48,64 @@ public class Main{
         }
     }
 
+    // merge two sorted array
+    private static void mergeSortedArray(int[] arr,int[] arr1, int[] arr2){
+
+        int i = 0; 
+        int j = 0; 
+        int k = 0;
+
+        while(i < arr1.length && j < arr2.length){
+            if(arr1[i] < arr2[j]){
+                arr[k] = arr1[i];
+                i++;
+            }else{
+                arr[k] = arr2[j];
+                j++;
+            }
+            k++;
+        }
+
+        while(i < arr1.length){
+            arr[k] = arr1[i];
+            k++;
+            i++;
+        }
+
+        while(j < arr2.length){
+            arr[k] = arr2[j];
+            k++;
+            j++;
+        }
+
+    }
+
+    public static void mergeSort(int[] nums){
+        int length = nums.length;
+
+        if(length < 2){
+            return;
+        }
+
+        int mid = length / 2;
+
+        int[] part1 = new int[mid];
+        int[] part2 = new int[length-mid];
+
+        for(int i = 0; i < mid; i++){
+            part1[i] = nums[i];
+        }
+
+        for(int i = mid; i < length; i++){
+            part2[i-mid] = nums[i];
+        }
+
+         mergeSort(part1);
+         mergeSort(part2);
+
+        mergeSortedArray(nums, part1, part2);
+
+    }    
 
     //selection sort with one argument
     public static void selectionSort(int[] nums){
@@ -87,11 +145,21 @@ public class Main{
         int[] nums = { 1, 5, 0, 2, 8, 6, 4};
 
         print(nums);
+
         // bubbleSort(nums, true);
         // print(nums);
+
         // selectionSort(nums);
         // print(nums);
-        insertionSort(nums);
+
+        // insertionSort(nums);
+        // print(nums);
+        
+        // int[] newone = mergeSorted(nums, nums);
+        // print(newone);
+
+        mergeSort(nums);
         print(nums);
+
     }
 }
