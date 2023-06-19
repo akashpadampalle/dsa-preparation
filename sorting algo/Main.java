@@ -28,6 +28,27 @@ public class Main{
     }
 
 
+    // insertion sort with one argument
+    public static void insertionSort(int[] nums){
+        insertionSort(nums, false);
+    }
+
+    // insertion sort
+    public static void insertionSort(int[] nums, boolean isDescending){
+        for(int i = 1; i < nums.length; i++){
+            int current = nums[i];
+            int j = i - 1;
+
+            while(j >= 0 && ((current < nums[j] && !isDescending) || (current > nums[j] && isDescending))){
+                nums[j+1] = nums[j];
+                j--;
+            }
+
+            nums[j+1] = current;
+        }
+    }
+
+
     //selection sort with one argument
     public static void selectionSort(int[] nums){
         selectionSort(nums, false);
@@ -66,9 +87,11 @@ public class Main{
         int[] nums = { 1, 5, 0, 2, 8, 6, 4};
 
         print(nums);
-        bubbleSort(nums, true);
-        print(nums);
+        // bubbleSort(nums, true);
+        // print(nums);
         // selectionSort(nums);
         // print(nums);
+        insertionSort(nums);
+        print(nums);
     }
 }
